@@ -1,0 +1,1 @@
+# sociologia.3.0

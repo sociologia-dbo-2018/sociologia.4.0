@@ -1,0 +1,41 @@
+extends master.pug
+block head
+    title Formulário
+    link(rel="stylesheet" href="../css/report.css")
+block content
+    h2.text-center.mt-4 Você se importaria de responder 4 questões antes de indicar o ocorrido?
+    p.text-center.w-75.mt-4 As questões abordadas abaixo são de grande relevancia para metodos de pesquisa, nós agradecemos qualquer contribuição dada neste pequeno formulário.
+    form.form-group.w-75.mt-4
+        div
+            label(for="selectSex") Qual é o seu gênero?
+            select.form-control.selectSex
+                option(value="m") Masculino
+                option(value="f") Feminino
+                option(value="o") Outro
+        div.mt-3
+            label(for="faixaEtaria") Qual é a sua faixa etária (idade)?
+            select.form-control.faixaEtaria
+                option(value="") Até 17 anos
+                option(value="") 18 a 25 anos
+                option(value="") 26 a 35 anos
+                option(value="") 36 a 45 anos
+                option(value="") 46 a 55 anos
+                option(value="") 56 a 70 anos
+                option(value="") 71 ou mais
+        div.mt-3
+            label(for="faixaEtaria") Qual é a sua classe social?
+            select.form-control.faixaEtaria
+                option(value="") Pobre
+                option(value="") Classe média baixa
+                option(value="") Classe média
+                option(value="") Classe média alta
+                option(value="") Rico
+                option(value="") Outro
+        hr
+        div
+            p Independente de sua escolha, você será redirecionado para marcar no mapa o local do ocorrido e finalizar seu relato.
+        hr.w-50.mt-5
+        div.buttons.d-flex.justify-content-center
+            a(href='./report.pug').btn.btn-outline-danger Apenas prossiga
+            a(href='./report.pug').btn.btn-outline-success.ml-5.btnForm Contribuir
+block foot.sugestion
