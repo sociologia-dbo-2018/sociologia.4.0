@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR"></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/bootstrap.min.c9ac70f5.css">
+  <link rel="stylesheet" href="/all.min.d5ab21ee.css">
+  <link rel="stylesheet" href="/colors.daac67d9.css">
+  <link rel="stylesheet" href="/effects.0d3bb602.css">
+  <link rel="stylesheet" href="/header.954910ad.css">
+  <link rel="stylesheet" href="/footer.7327b172.css">
+  <link rel="shortcut icon" href="/logo.7433d22f.png" type="image/x-icon">
+  <title>Reportagem de casos</title>
+  <link rel="stylesheet" href="/report.ed09f5e1.css">
+<script src="/report.ed09f5e1.js"></script></head>
+<body></body>
+<div class="d-flex flex-column align-items-center master-container">
+  <header class="d-flex flex-row-reverse flex-direction-center justify-content-center container-fluid"></header>
+  <nav class="navbar navbarSup container-fluid">
+    <div class="container-fluid"></div>
+    <div class="navbar-header"><i class="navbar-toggle collapsed fas fa-bars" data-toggle="collapse" data-target="#alignment" aria-expanded="false"></i></div>
+    <div class="d-flex justify-content-center logo"><a href="/index.html"><img src="/logo.7433d22f.png" width="250px" height="175px" href="./index.pug"></a></div>
+    <div></div>
+    <div class="collapse navbar-collapse" id="alignment">
+      <hr class="w-75">
+      <ul class="nav navbar-nav d-flex flex-row justify-content-center">
+        <li class="mr-4"><a href="/index.html">Página Inicial</a></li>
+        <li class="mr-4"><a href="/about.html">Sobre nós</a></li>
+        <li class="mr-4"><a href="/feed.html">Feed de Notícias</a></li>
+        <li class="mr-4"><a href="/report.html">Reportar Caso</a></li>
+        <li class="mr-4"><a href="/statistics.html">Estatisticas</a></li>
+      </ul>
+    </div>
+  </nav>
+  <hr class="w-75">
+  <div class="container-fluid d-flex">
+    <div class="d-flex w-100 align-items-center mb-5 flex-column">
+      <div class="mapa d-flex flex-column">
+        <h2 class="align-self-start ml-5 mb-5 mt-5">Selecione o local:</h2><img class="w-100" src="https://rocketz.com.br/assets/store/img-store-cu-map-100123ec35cb58f100158e68b53bcd0c77a7f5120769df584d4aa67bb56e1c8c.jpg">
+      </div>
+      <form class="w-100">
+        <div class="selecao list-group d-none">
+          <div class="form-check list-group-item">
+            <input class="tipo_violencia" id="material" type="radio" name="tipo" value="material">
+            <label for="material">Material</label>
+          </div>
+          <div class="form-check list-group-item">
+            <input class="tipo_violencia" id="fisica" type="radio" name="tipo" value="fisica">
+            <label class="title" for="fisica">Física</label>
+          </div>
+          <div class="form-check list-group-item">
+            <input class="tipo_violencia" id="sexual" type="radio" name="tipo" value="sexual">
+            <label class="title" for="sexual">Sexual</label>
+          </div>
+          <div class="form-check list-group-item">
+            <input class="tipo_violencia" id="psicologica" type="radio" name="tipo" value="psicologica">
+            <label class="title" for="psicologica">Psicológia</label>
+          </div>
+        </div>
+        <div class="material opcoes">
+          <input class="material" type="radio" name="opcoes" value="material_roubo" id="material_roubo">
+          <label for="material_roubo">Roubo</label>
+          <input class="material" type="radio" name="opcoes" value="material_tentativa_assalto" id="material_tentativa_assalto">
+          <label for="material_tentativa_assalto">Tentativa de Assalto</label>
+          <input class="material" type="radio" name="opcoes" value="material_furto" id="material_furto">
+          <label for="material_furto">Furto</label>
+          <input class="material" type="radio" name="opcoes" value="material_dano_propriedade" id="material_dano_propriedade">
+          <label for="material_dano_propriedade">Dano a Propriedade</label>
+          <input class="material" type="radio" name="opcoes" value="material_outros" id="material_outros">
+          <label for="material_outros">Outros tipos de Violência Material</label>
+        </div>
+        <div class="fisica opcoes">
+          <input class="fisica" type="radio" name="opcoes" value="fisica_sequestro" id="fisica_sequestro">
+          <label for="fisica_sequestro">Sequestro</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_tentativa_sequestro" id="fisica_tentativa_sequestro">
+          <label for="fisica_tentativa_sequestro">Tentativa de Sequestro</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_agressao_fisica" id="fisica_agressao_fisica">
+          <label for="fisica_agressao_fisica">Agressão Fisíca</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_agressao_arma_fogo" id="fisica_agressao_arma_fogo">
+          <label for="fisica_agressao_arma_fogo">Agressão com arma de fogo</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_agressao_arma_branca" id="fisica_agressao_arma_branca">
+          <label for="fisica_agressao_arma_branca">Agressão com arma branca</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_agressao_outros_objetos" id="fisica_agressao_outros_objetos">
+          <label for="fisica_agressao_outros_objetos">Agressão com outros objetos</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_assassinato" id="fisica_assassinato">
+          <label for="fisica_assassinato">Assassinato</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_tentativa_assassinato" id="fisica_tentativa_assassinato">
+          <label for="fisica_tentativa_assassinato">Tentativa de Assassinato</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_briga" id="fisica_briga">
+          <label for="fisica_briga">Briga</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_carcere_privado" id="fisica_carcere_privado">
+          <label for="fisica_carcere_privado">Cárcere Privado</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_tortura" id="fisica_tortura">
+          <label for="fisica_tortura">Tortura</label>
+          <input class="fisica" type="radio" name="opcoes" value="fisica_outros" id="fisica_outros">
+          <label for="fisica_outros">Outros tipos de Violência Física</label>
+        </div>
+        <div class="sexual opcoes">
+          <input class="sexual" type="radio" name="opcoes" value="sexual_estupro" id="sexual_estupro">
+          <label for="sexual_estupro">Estupro</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_tentativa_estupro" id="sexual_tentativa_estupro">
+          <label for="sexual_tentativa_estupro">Tentativa de Estupro</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_assedio_sexual" id="sexual_assedio_sexual">
+          <label for="sexual_assedio_sexual">Assédio Sexual</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_assedio_fisico" id="sexual_assedio_fisico">
+          <label for="sexual_assedio_fisico">Assédio Físico</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_assedio_moral" id="sexual_assedio_moral">
+          <label for="sexual_assedio_moral">Assédio Moral</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_assedio_verbal" id="sexual_assedio_verbal">
+          <label for="sexual_assedio_verbal">Assédio Verbal</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_assassinato" id="sexual_assassinato">
+          <label for="sexual_assassinato">Assassinato</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_tentativa_assassinato" id="sexual_tentativa_assassinato">
+          <label for="sexual_tentativa_assassinato">Tentativa de Assassinato</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_carcere_privado" id="sexual_carcere_privado">
+          <label for="sexual_carcere_privado">Cárcere Privado</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_bullying" id="sexual_bullying">
+          <label for="sexual_bullying">Bullying/ciberbullying</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_ameacas" id="sexual_ameacas">
+          <label for="sexual_ameacas">Ameaças</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_tortura" id="sexual_tortura">
+          <label for="sexual_tortura">Tortura</label>
+          <input class="sexual" type="radio" name="opcoes" value="sexual_outros" id="sexual_outros">
+          <label for="sexual_outros">Outros tipos de Violência Sexual</label>
+        </div>
+        <div class="psicologica opcoes">
+          <input class="psicologica" type="radio" name="opcoes" value="psicologica_assedio_verbal" id="psicologica_assedio_verbal">
+          <label for="psicologica_assedio_verbal">Assedio Verbal</label>
+          <input class="psicologica" type="radio" name="opcoes" value="psicologica_bullying" id="psicologica_bullying">
+          <label for="psicologica_bullying">Bullying/ciberbullying</label>
+          <input class="psicologica" type="radio" name="opcoes" value="psicologica_ameacas" id="psicologica_ameacas">
+          <label for="psicologica_ameacas">Ameaças</label>
+          <input class="psicologica" type="radio" name="opcoes" value="psicologica_tortura_psicologica" id="psicologica_tortura_psicologica">
+          <label for="psicologica_tortura_psicologica">Tortura Psicológica</label>
+          <input class="psicologica" type="radio" name="opcoes" value="psicologica_outros" id="psicologica_outros">
+          <label for="psicologica_outros">Outros tipos de Violência Psicológica</label>
+        </div>
+        <div class="opcional d-none">
+          <p class="questao">Você se importaria de responder 4 questões antes de enviar o formulário?</p>
+          <div class="btn-group">
+            <button class="btn btn-primary">Sim</button>
+            <button class="btn btn-secondary">Não</button>
+          </div>
+          <div class="questoes_opcionais d-none">
+            <div class="genero">
+              <h4>Qual é o seu gênero?</h4>
+              <input id="genero_masculino" type="radio" name="genero" value="genero_masculino">
+              <label for="genero_masculino">Masculino</label>
+              <input id="genero_feminino" type="radio" name="genero" value="genero_feminino">
+              <label for="genero_feminino">Feminino</label>
+              <input id="genero_outro" type="radio" name="genero" value="genero_outro">
+              <label for="genero_outro">Outro</label>
+            </div>
+            <div class="etnia">
+              <h4>Qual é o sua raça/cor/etnia?</h4>
+              <input id="etnia_branco" type="radio" name="etnia" value="etnia_branco">
+              <label for="etnia_branco">Branco</label>
+              <input id="etnia_negro" type="radio" name="etnia" value="etnia_negro">
+              <label for="etnia_negro">Negro</label>
+              <input id="etnia_indigena" type="radio" name="etnia" value="etnia_indigena">
+              <label for="etnia_indigena">Indígena</label>
+              <input id="etnia_pardo" type="radio" name="etnia" value="etnia_pardo">
+              <label for="etnia_pardo">Pardo</label>
+              <input id="etnia_outro" type="radio" name="etnia" value="etnia_outro">
+              <label for="etnia_outro">Outro</label>
+            </div>
+            <div class="idade">
+              <h4>Qual é o sua faixa etária?</h4>
+              <input id="idade_17" type="radio" name="idade" value="idade_17">
+              <label for="idade_17">Até 17 anos</label>
+              <input id="idade_25" type="radio" name="idade" value="idade_25">
+              <label for="idade_25">De 18 a 25 anos</label>
+              <input id="idade_35" type="radio" name="idade" value="idade_25">
+              <label for="idade_25">De 25 a 35 anos</label>
+              <input id="idade_45" type="radio" name="idade" value="idade_45">
+              <label for="idade_45">De 36 a 45 anos</label>
+              <input id="idade_55" type="radio" name="idade" value="idade_55">
+              <label for="idade_55">De 46 a 55 anos</label>
+              <input id="idade_70" type="radio" name="idade" value="idade_70">
+              <label for="idade_70">De 56 a 70 anos</label>
+              <input id="idade_71" type="radio" name="idade" value="idade_71">
+              <label for="idade_71">71 anos ou mais</label>
+            </div>
+            <div class="etnia">
+              <h4>Qual é o sua classe social?</h4>
+              <input id="classe_social_pobre" type="radio" name="classe_social" value="classe_social_pobre">
+              <label for="classe_social_pobre">Pobre</label>
+              <input id="classe_social_media_baixa" type="radio" name="classe_social" value="classe_social_media_baixa">
+              <label for="classe_social_media_baixa">Classe média baixa</label>
+              <input id="classe_social_media" type="radio" name="classe_social" value="classe_social_media">
+              <label for="classe_social_media">Classe média</label>
+              <input id="classe_social_media_alta" type="radio" name="classe_social" value="classe_social_media_alta">
+              <label for="classe_social_media_alta">Classe média alta</label>
+              <input id="classe_social_rico" type="radio" name="classe_social" value="classe_social_rico">
+              <label for="classe_social_rico">Rico</label>
+              <input id="classe_social_outro" type="radio" name="classe_social" value="classe_social_outro">
+              <label for="classe_social_outro">Outro</label>
+            </div>
+          </div>
+        </div>
+      </form>
+      <button class="d-flex align-self-end btn btn-secondary mt-5" id="enviarFormulario">Enviar</button>
+    </div>
+  </div>
+  <footer class="d-flex container-fluid">
+    <div class="collaborators d-flex flex-column w-50">
+      <div class="collaborator d-flex flex-row">
+        <div class="icon d-flex flex-column align-content-center">
+          <div class="person"></div>
+          <h5 class="nameCollaborator">Name</h5>
+        </div>
+        <div class="aboutMe">
+          <p class="descriptionCollaborator">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="collaborator d-flex flex-row">
+        <div class="icon">
+          <div class="person"></div>
+          <h5 class="nameCollaborator">Name</h5>
+        </div>
+        <div class="aboutMe">
+          <p class="descriptionCollaborator">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="collaborator d-flex flex-row">
+        <div class="icon">
+          <div class="person"></div>
+          <h5 class="nameCollaborator">Name</h5>
+        </div>
+        <div class="aboutMe">
+          <p class="descriptionCollaborator">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="collaborator d-flex flex-row">
+        <div class="icon">
+          <div class="person"></div>
+          <h5 class="nameCollaborator">Name</h5>
+        </div>
+        <div class="aboutMe">
+          <p class="descriptionCollaborator">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="collaborator d-flex flex-row">
+        <div class="icon">
+          <div class="person"></div>
+          <h5 class="nameCollaborator">Name</h5>
+        </div>
+        <div class="aboutMe">
+          <p class="descriptionCollaborator">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+      <div class="collaborator d-flex flex-row">
+        <div class="icon">
+          <div class="person"></div>
+          <h5 class="nameCollaborator">Name</h5>
+        </div>
+        <div class="aboutMe">
+          <p class="descriptionCollaborator">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sugestion w-50">
+      <h1 class="text-dark">Sugestões</h1>
+      <form class="w-75" action="https://formspree.io/dbo.sociologia2018@gmail.com" method="POST">
+        <div class="form-group">
+          <label for="Nome">Nome:</label>
+          <input class="form-control" id="name" type="text" name="name" required="" placeholder="Digite seu nome">
+        </div>
+        <div class="form-group">
+          <label for="Email">Email:</label>
+          <input class="form-control" id="email" type="email" name="Email" placeholder="name@example.com" required="">
+        </div>
+        <div class="form-group">
+          <label for="titulo">Título:</label>
+          <input class="form-control" id="titleForm" type="text" name="titulo" placeholder="Titulo da sugestão">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="sugestion" placeholder="Descrição sugestiva" rows="5" name="sugestão"></textarea>
+        </div>
+        <input class="btn btn-outline-success mb-5" type="submit" value="Enviar">
+      </form>
+    </div>
+  </footer>
+  <div class="bg-dark d-flex justify-content-center w-100">
+    <p class="text-white">Copyright &copy;</p>
+  </div>
+</div>
+<script src="/jquery.slim.min.46468b0e.js"></script>
+<script src="/popper.min.0363ac52.js"></script>
+<script src="/bootstrap.min.1ff4d686.js"></script>
+<script src="/handlebars.min.cb46c35d.js"></script>
+<script src="/report.5f6d5a14.js"></script>
