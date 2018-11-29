@@ -7,10 +7,11 @@ export const renderNews = (title, link) => {
     // Incluindo titulo
     a.textContent = title;
 
+    a.target = '_blank';
+
     const li = document.createElement('li');
     li.className = 'list-group-item';
 
     li.append(a);
     divNew.appendChild(li);
-    // console.log(object);
 };

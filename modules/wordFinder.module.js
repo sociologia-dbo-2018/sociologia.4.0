@@ -1,6 +1,7 @@
-import {key_words} from '../objects/keyWords.object.js';
+import {keyWords} from '../objects/keyWords.object.js';
+import {renderNews} from './renderNews.module.js';
 
-export const wordFinder = (description) => {
+export const wordFinder = (description, title, link) => {
     // Python ;)
     const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
     // Removento qualquer pontuação de inicio ou fim
@@ -15,12 +16,9 @@ export const wordFinder = (description) => {
         }
     });
 
-    for (const key_word of key_words) {
-        for (const word of description) {
-            if (key_word === word) {
-                console.log('word');
-                return true;
-            }
+    for (const word of description) {
+        if (keyWords.includes(word)) {
+            renderNews(title, link);
         }
     }
     return false;

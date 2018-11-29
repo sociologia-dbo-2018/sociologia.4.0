@@ -1,6 +1,6 @@
 import {veiculos} from '../objects/veiculos.object.js';
 import {wordFinder} from './wordFinder.module.js';
-import {renderNews} from './renderNews.module.js';
+// import {renderNews} from './renderNews.module.js';
 
 export const getNews = () => {
     const CORS_PROXY = 'https://cors.io/?';
@@ -16,12 +16,11 @@ export const getNews = () => {
                     veiculo.itens.push(itemTag.children);
                 }
 
-                find_word_keys(veiculo);
+                findWordKeys(veiculo);
             });
     }
 };
-
-const find_word_keys = (veiculo) => {
+const findWordKeys = (veiculo) => {
     // Navegando nos itens trazidos
     for (let item of veiculo.itens) {
         // Cria um vetor com todas as palavras em minusculos da descrição
@@ -35,9 +34,7 @@ const find_word_keys = (veiculo) => {
         for (const i of item) {
             if (i.tagName === 'description') {
                 const description = i.textContent.toLowerCase().split(' ');
-                if (wordFinder(description)) {
-                    renderNews(title, link);
-                }
+                wordFinder(description, title, link);
             }
         }
     }
