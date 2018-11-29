@@ -5,12 +5,12 @@
 .report {
     width: 10%;
 }
-.rsslocal, .rssglobal {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 200px;
-}
 
 hr {
     width: 85%;
+}
+
+.rssArea {
+    overflow: auto;
+    max-height: 300px;
 }
