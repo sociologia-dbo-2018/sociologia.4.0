@@ -9,7 +9,9 @@ export const loadMap = () => {
     
         googleMaps.load(function (google) {
             const map = new google.maps.Map(divMap, {
-                zoom: 14
+                zoom: 14,
+                maxZoom: 17,
+                minZoom: 2
             });
             const markers = [];
             navigator.geolocation.getCurrentPosition(function (position) {
