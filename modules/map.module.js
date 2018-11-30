@@ -11,7 +11,7 @@ export const loadMap = () => {
             const map = new google.maps.Map(divMap, {
                 zoom: 14,
                 maxZoom: 17,
-                minZoom: 2
+                minZoom: 3
             });
             const markers = [];
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -19,7 +19,7 @@ export const loadMap = () => {
                     position.coords.longitude));
             });
             google.maps.event.addListener(map, 'click', function (e) {
-                // if (document.URL.includes('report')) {
+                if (divMap != undefined) {
                 const marker = new google.maps.Marker({
                     position: e.latLng,
                     map: map,
@@ -35,7 +35,7 @@ export const loadMap = () => {
                 const latLong = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                 markers.push(latLong);
                 console.log(markers);
-                // } else { }
+                } else { }
             });
         });
 } 
