@@ -135,9 +135,33 @@ exports.veiculos = veiculos;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.key_words = void 0;
-var key_words = ['roubo', 'furto', 'assalto', 'tortura', 'estupro', 'assédio', 'homofobia', 'transfobia', 'lgbtfobia', 'machismo', 'feminicídio', 'ameaça', 'bullying', 'ciberbullying', 'psicológica', 'racismo', 'capacitismo', 'preconceito', 'víti', 'assasinato', 'violentos', 'violento', 'refé'];
-exports.key_words = key_words;
+exports.keyWords = void 0;
+var keyWords = ['roub', 'furt', 'assal', 'tortur', 'estupr', 'assédi', 'assedi', 'homof', 'trans', 'transf', 'lgbtf', 'lgbt', 'machi', 'machismo', 'feminicídio', 'feminicidio', 'feminic', 'ameaç', 'ameaça', 'ameaca', 'ameac', 'bully', 'ciberbullying', 'psicologica', 'psicolog', 'psicológica', 'psicológ', 'racis', 'capacitismo', 'preconc', 'viti', 'víti', 'assasin', 'violen', 'refé', 'refe'];
+exports.keyWords = keyWords;
+},{}],"../modules/renderNews.module.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderNews = void 0;
+
+var renderNews = function renderNews(title, link) {
+  var divNew = document.querySelector('.news'); // titulo da noticia
+
+  var a = document.createElement('a'); // Incluindo link
+
+  a.href = link; // Incluindo titulo
+
+  a.textContent = title;
+  a.target = '_blank';
+  var li = document.createElement('li');
+  li.className = 'list-group-item';
+  li.append(a);
+  divNew.appendChild(li);
+};
+
+exports.renderNews = renderNews;
 },{}],"../modules/wordFinder.module.js":[function(require,module,exports) {
 "use strict";
 
@@ -148,7 +172,9 @@ exports.wordFinder = void 0;
 
 var _keyWordsObject = require("../objects/keyWords.object.js");
 
-var wordFinder = function wordFinder(description) {
+var _renderNewsModule = require("./renderNews.module.js");
+
+var wordFinder = function wordFinder(description, title, link) {
   // Python ;)
   var punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'; // Removento qualquer pontuação de inicio ou fim
 
@@ -166,34 +192,11 @@ var wordFinder = function wordFinder(description) {
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = _keyWordsObject.key_words[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var key_word = _step.value;
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+    for (var _iterator = description[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var word = _step.value;
 
-      try {
-        for (var _iterator2 = description[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var word = _step2.value;
-
-          if (key_word === word) {
-            console.log('word');
-            return true;
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
+      if (_keyWordsObject.keyWords.includes(word)) {
+        (0, _renderNewsModule.renderNews)(title, link);
       }
     }
   } catch (err) {
@@ -215,30 +218,7 @@ var wordFinder = function wordFinder(description) {
 };
 
 exports.wordFinder = wordFinder;
-},{"../objects/keyWords.object.js":"../objects/keyWords.object.js"}],"../modules/renderNews.module.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderNews = void 0;
-
-var renderNews = function renderNews(title, link) {
-  var divNew = document.querySelector('.news'); // titulo da noticia
-
-  var a = document.createElement('a'); // Incluindo link
-
-  a.href = link; // Incluindo titulo
-
-  a.textContent = title;
-  var li = document.createElement('li');
-  li.className = 'list-group-item';
-  li.append(a);
-  divNew.appendChild(li); // console.log(object);
-};
-
-exports.renderNews = renderNews;
-},{}],"../modules/rss.module.js":[function(require,module,exports) {
+},{"../objects/keyWords.object.js":"../objects/keyWords.object.js","./renderNews.module.js":"../modules/renderNews.module.js"}],"../modules/rss.module.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -250,8 +230,7 @@ var _veiculosObject = require("../objects/veiculos.object.js");
 
 var _wordFinderModule = require("./wordFinder.module.js");
 
-var _renderNewsModule = require("./renderNews.module.js");
-
+// import {renderNews} from './renderNews.module.js';
 var getNews = function getNews() {
   var CORS_PROXY = 'https://cors.io/?';
   var xml;
@@ -291,7 +270,7 @@ var getNews = function getNews() {
           }
         }
 
-        find_word_keys(veiculo);
+        findWordKeys(veiculo);
       });
     };
 
@@ -316,7 +295,7 @@ var getNews = function getNews() {
 
 exports.getNews = getNews;
 
-var find_word_keys = function find_word_keys(veiculo) {
+var findWordKeys = function findWordKeys(veiculo) {
   // Navegando nos itens trazidos
   var _iteratorNormalCompletion3 = true;
   var _didIteratorError3 = false;
@@ -365,9 +344,7 @@ var find_word_keys = function find_word_keys(veiculo) {
           if (_i.tagName === 'description') {
             var description = _i.textContent.toLowerCase().split(' ');
 
-            if ((0, _wordFinderModule.wordFinder)(description)) {
-              (0, _renderNewsModule.renderNews)(title, link);
-            }
+            (0, _wordFinderModule.wordFinder)(description, title, link);
           }
         }
       } catch (err) {
@@ -400,7 +377,7 @@ var find_word_keys = function find_word_keys(veiculo) {
     }
   }
 };
-},{"../objects/veiculos.object.js":"../objects/veiculos.object.js","./wordFinder.module.js":"../modules/wordFinder.module.js","./renderNews.module.js":"../modules/renderNews.module.js"}],"../js/feed.js":[function(require,module,exports) {
+},{"../objects/veiculos.object.js":"../objects/veiculos.object.js","./wordFinder.module.js":"../modules/wordFinder.module.js"}],"../js/feed.js":[function(require,module,exports) {
 "use strict";
 
 var _rssModule = require("../modules/rss.module.js");
@@ -439,7 +416,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38439" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35043" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

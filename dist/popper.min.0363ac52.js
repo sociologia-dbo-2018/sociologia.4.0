@@ -272,14 +272,14 @@ var O = Object.assign || function (e) {
   return e;
 };
 
-function S(e) {
+function L(e) {
   return O({}, e, {
     right: e.left + e.width,
     bottom: e.top + e.height
   });
 }
 
-function L(e) {
+function S(e) {
   let t = {};
 
   try {
@@ -308,21 +308,21 @@ function L(e) {
     p -= E(t, 'x'), d -= E(t, 'y'), o.width -= p, o.height -= d;
   }
 
-  return S(o);
+  return L(o);
 }
 
 function T(e, t, o = !1) {
   var n = Math.max;
   const i = h(10),
         r = 'HTML' === t.nodeName,
-        p = L(e),
-        d = L(t),
+        p = S(e),
+        d = S(t),
         f = a(e),
         l = s(t),
         m = parseFloat(l.borderTopWidth, 10),
         c = parseFloat(l.borderLeftWidth, 10);
   o && r && (d.top = n(d.top, 0), d.left = n(d.left, 0));
-  let u = S({
+  let u = L({
     top: p.top - d.top - m,
     left: p.left - d.left - c,
     width: p.width,
@@ -352,7 +352,7 @@ function D(e, t = !1) {
     width: r,
     height: p
   };
-  return S(f);
+  return L(f);
 }
 
 function C(e) {
@@ -443,8 +443,8 @@ function W(e, t, o, n = null) {
 function k(e) {
   const t = e.ownerDocument.defaultView,
         o = t.getComputedStyle(e),
-        n = parseFloat(o.marginTop) + parseFloat(o.marginBottom),
-        i = parseFloat(o.marginLeft) + parseFloat(o.marginRight),
+        n = parseFloat(o.marginTop || 0) + parseFloat(o.marginBottom || 0),
+        i = parseFloat(o.marginLeft || 0) + parseFloat(o.marginRight || 0),
         r = {
     width: e.offsetWidth + i,
     height: e.offsetHeight + n
@@ -477,22 +477,22 @@ function M(e, t, o) {
   return i[p] = t[p] + t[s] / 2 - n[s] / 2, i[d] = o === d ? t[d] - n[f] : t[A(d)], i;
 }
 
-function I(e, t) {
+function F(e, t) {
   return Array.prototype.find ? e.find(t) : e.filter(t)[0];
 }
 
-function F(e, t, o) {
+function I(e, t, o) {
   if (Array.prototype.findIndex) return e.findIndex(e => e[t] === o);
-  const n = I(e, e => e[t] === o);
+  const n = F(e, e => e[t] === o);
   return e.indexOf(n);
 }
 
 function R(e, t, o) {
-  const n = void 0 === o ? e : e.slice(0, F(e, 'name', o));
+  const n = void 0 === o ? e : e.slice(0, I(e, 'name', o));
   return n.forEach(e => {
     e['function'] && console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
     const o = e['function'] || e.fn;
-    e.enabled && d(o) && (t.offsets.popper = S(t.offsets.popper), t.offsets.reference = S(t.offsets.reference), t = o(t, e));
+    e.enabled && d(o) && (t.offsets.popper = L(t.offsets.popper), t.offsets.reference = L(t.offsets.reference), t = o(t, e));
   }), t;
 }
 
@@ -538,24 +538,24 @@ function K(e) {
   return t ? t.defaultView : window;
 }
 
-function G(e, t, o, n) {
+function q(e, t, o, n) {
   const i = 'BODY' === e.nodeName,
         r = i ? e.ownerDocument.defaultView : e;
   r.addEventListener(t, o, {
     passive: !0
-  }), i || G(a(r.parentNode), t, o, n), n.push(r);
+  }), i || q(a(r.parentNode), t, o, n), n.push(r);
 }
 
-function q(e, t, o, n) {
+function z(e, t, o, n) {
   o.updateBound = n, K(e).addEventListener('resize', o.updateBound, {
     passive: !0
   });
   const i = a(e);
-  return G(i, 'scroll', o.updateBound, o.scrollParents), o.scrollElement = i, o.eventsEnabled = !0, o;
+  return q(i, 'scroll', o.updateBound, o.scrollParents), o.scrollElement = i, o.eventsEnabled = !0, o;
 }
 
-function z() {
-  this.state.eventsEnabled || (this.state = q(this.reference, this.options, this.state, this.scheduleUpdate));
+function G() {
+  this.state.eventsEnabled || (this.state = z(this.reference, this.options, this.state, this.scheduleUpdate));
 }
 
 function _(e, t) {
@@ -599,46 +599,64 @@ function ee(e, t, o, n, i) {
 }
 
 function te(e, t) {
-  var o = Math.round,
-      n = Math.floor;
+  var o = Math.round;
+
   const {
-    x: i,
-    y: r
-  } = t,
-        {
-    popper: p
+    popper: n,
+    reference: i
   } = e.offsets,
-        d = I(e.instance.modifiers, e => 'applyStyle' === e.name).gpuAcceleration;
-  void 0 !== d && console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
-  const s = void 0 === d ? t.gpuAcceleration : d,
-        f = c(e.instance.popper),
-        a = L(f),
-        l = {
-    position: p.position
-  },
-        m = {
-    left: n(p.left),
-    top: o(p.top),
-    bottom: o(p.bottom),
-    right: n(p.right)
-  },
-        h = 'bottom' === i ? 'top' : 'bottom',
-        u = 'right' === r ? 'left' : 'right',
-        g = V('transform');
-  let b, w;
-  if (w = 'bottom' == h ? 'HTML' === f.nodeName ? -f.clientHeight + m.bottom : -a.height + m.bottom : m.top, b = 'right' == u ? 'HTML' === f.nodeName ? -f.clientWidth + m.right : -a.width + m.right : m.left, s && g) l[g] = `translate3d(${b}px, ${w}px, 0)`, l[h] = 0, l[u] = 0, l.willChange = 'transform';else {
-    const e = 'bottom' == h ? -1 : 1,
-          t = 'right' == u ? -1 : 1;
-    l[h] = w * e, l[u] = b * t, l.willChange = `${h}, ${u}`;
-  }
-  const y = {
-    "x-placement": e.placement
+        r = -1 !== ['left', 'right'].indexOf(e.placement),
+        p = -1 !== e.placement.indexOf('-'),
+        d = i.width % 2 == n.width % 2,
+        s = 1 == i.width % 2 && 1 == n.width % 2,
+        f = e => e,
+        a = t ? r || p || d ? o : Math.floor : f,
+        l = t ? o : f;
+
+  return {
+    left: a(s && !p && t ? n.left - 1 : n.left),
+    top: l(n.top),
+    bottom: l(n.bottom),
+    right: a(n.right)
   };
-  return e.attributes = O({}, y, e.attributes), e.styles = O({}, l, e.styles), e.arrowStyles = O({}, e.offsets.arrow, e.arrowStyles), e;
 }
 
-function oe(e, t, o) {
-  const n = I(e, ({
+const oe = e && /Firefox/i.test(navigator.userAgent);
+
+function ne(e, t) {
+  const {
+    x: o,
+    y: n
+  } = t,
+        {
+    popper: i
+  } = e.offsets,
+        r = F(e.instance.modifiers, e => 'applyStyle' === e.name).gpuAcceleration;
+  void 0 !== r && console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+  const p = void 0 === r ? t.gpuAcceleration : r,
+        d = c(e.instance.popper),
+        s = S(d),
+        f = {
+    position: i.position
+  },
+        a = te(e, 2 > window.devicePixelRatio || !oe),
+        l = 'bottom' === o ? 'top' : 'bottom',
+        m = 'right' === n ? 'left' : 'right',
+        h = V('transform');
+  let u, g;
+  if (g = 'bottom' == l ? 'HTML' === d.nodeName ? -d.clientHeight + a.bottom : -s.height + a.bottom : a.top, u = 'right' == m ? 'HTML' === d.nodeName ? -d.clientWidth + a.right : -s.width + a.right : a.left, p && h) f[h] = `translate3d(${u}px, ${g}px, 0)`, f[l] = 0, f[m] = 0, f.willChange = 'transform';else {
+    const e = 'bottom' == l ? -1 : 1,
+          t = 'right' == m ? -1 : 1;
+    f[l] = g * e, f[m] = u * t, f.willChange = `${l}, ${m}`;
+  }
+  const b = {
+    "x-placement": e.placement
+  };
+  return e.attributes = O({}, b, e.attributes), e.styles = O({}, f, e.styles), e.arrowStyles = O({}, e.offsets.arrow, e.arrowStyles), e;
+}
+
+function ie(e, t, o) {
+  const n = F(e, ({
     name: e
   }) => e === t),
         i = !!n && e.some(e => e.name === o && e.enabled && e.order < n.order);
@@ -652,8 +670,8 @@ function oe(e, t, o) {
   return i;
 }
 
-function ne(e, t) {
-  if (!oe(e.instance.modifiers, 'arrow', 'keepTogether')) return e;
+function re(e, t) {
+  if (!ie(e.instance.modifiers, 'arrow', 'keepTogether')) return e;
   let o = t.element;
 
   if ('string' == typeof o) {
@@ -672,7 +690,7 @@ function ne(e, t) {
         l = p ? 'left' : 'top',
         m = p ? 'bottom' : 'right',
         h = k(o)[d];
-  r[m] - h < i[a] && (e.offsets.popper[a] -= i[a] - (r[m] - h)), r[a] + h > i[m] && (e.offsets.popper[a] += r[a] + h - i[m]), e.offsets.popper = S(e.offsets.popper);
+  r[m] - h < i[a] && (e.offsets.popper[a] -= i[a] - (r[m] - h)), r[a] + h > i[m] && (e.offsets.popper[a] += r[a] + h - i[m]), e.offsets.popper = L(e.offsets.popper);
   const c = r[a] + r[d] / 2 - h / 2,
         u = s(e.instance.popper),
         g = parseFloat(u[`margin${f}`], 10),
@@ -684,27 +702,27 @@ function ne(e, t) {
   }, e;
 }
 
-function ie(e) {
+function pe(e) {
   if ('end' === e) return 'start';
   return 'start' === e ? 'end' : e;
 }
 
-var re = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
-const pe = re.slice(3);
+var de = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+const se = de.slice(3);
 
-function de(e, t = !1) {
-  const o = pe.indexOf(e),
-        n = pe.slice(o + 1).concat(pe.slice(0, o));
+function fe(e, t = !1) {
+  const o = se.indexOf(e),
+        n = se.slice(o + 1).concat(se.slice(0, o));
   return t ? n.reverse() : n;
 }
 
-const se = {
+const ae = {
   FLIP: 'flip',
   CLOCKWISE: 'clockwise',
   COUNTERCLOCKWISE: 'counterclockwise'
 };
 
-function fe(e, t) {
+function le(e, t) {
   if (Y(e.instance.modifiers, 'inner')) return e;
   if (e.flipped && e.placement === e.originalPlacement) return e;
   const o = P(e.instance.popper, e.instance.reference, t.padding, t.boundariesElement, e.positionFixed);
@@ -714,16 +732,16 @@ function fe(e, t) {
       p = [];
 
   switch (t.behavior) {
-    case se.FLIP:
+    case ae.FLIP:
       p = [n, i];
       break;
 
-    case se.CLOCKWISE:
-      p = de(n);
+    case ae.CLOCKWISE:
+      p = fe(n);
       break;
 
-    case se.COUNTERCLOCKWISE:
-      p = de(n, !0);
+    case ae.COUNTERCLOCKWISE:
+      p = fe(n, !0);
       break;
 
     default:
@@ -744,11 +762,11 @@ function fe(e, t) {
           b = 'left' === n && h || 'right' === n && c || 'top' === n && u || 'bottom' === n && g,
           w = -1 !== ['top', 'bottom'].indexOf(n),
           y = !!t.flipVariations && (w && 'start' === r && h || w && 'end' === r && c || !w && 'start' === r && u || !w && 'end' === r && g);
-    (m || b || y) && (e.flipped = !0, (m || b) && (n = p[s + 1]), y && (r = ie(r)), e.placement = n + (r ? '-' + r : ''), e.offsets.popper = O({}, e.offsets.popper, M(e.instance.popper, e.offsets.reference, e.placement)), e = R(e.instance.modifiers, e, 'flip'));
+    (m || b || y) && (e.flipped = !0, (m || b) && (n = p[s + 1]), y && (r = pe(r)), e.placement = n + (r ? '-' + r : ''), e.offsets.popper = O({}, e.offsets.popper, M(e.instance.popper, e.offsets.reference, e.placement)), e = R(e.instance.modifiers, e, 'flip'));
   }), e;
 }
 
-function ae(e) {
+function me(e) {
   const {
     popper: t,
     reference: o
@@ -762,7 +780,7 @@ function ae(e) {
   return t[p] < i(o[d]) && (e.offsets.popper[d] = i(o[d]) - t[s]), t[d] > i(o[p]) && (e.offsets.popper[d] = i(o[p])), e;
 }
 
-function le(e, t, o, n) {
+function he(e, t, o, n) {
   var i = Math.max;
   const r = e.match(/((?:\-|\+)?\d*\.?\d*)(.*)/),
         p = +r[1],
@@ -783,7 +801,7 @@ function le(e, t, o, n) {
         e = n;
     }
 
-    const i = S(e);
+    const i = L(e);
     return i[t] / 100 * p;
   }
 
@@ -795,18 +813,18 @@ function le(e, t, o, n) {
   return p;
 }
 
-function me(e, t, o, n) {
+function ce(e, t, o, n) {
   const i = [0, 0],
         r = -1 !== ['right', 'left'].indexOf(n),
         p = e.split(/(\+|\-)/).map(e => e.trim()),
-        d = p.indexOf(I(p, e => -1 !== e.search(/,|\s/)));
+        d = p.indexOf(F(p, e => -1 !== e.search(/,|\s/)));
   p[d] && -1 === p[d].indexOf(',') && console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
   const s = /\s*,\s*|\s+/;
   let f = -1 === d ? [p] : [p.slice(0, d).concat([p[d].split(s)[0]]), [p[d].split(s)[1]].concat(p.slice(d + 1))];
   return f = f.map((e, n) => {
     const i = (1 === n ? !r : r) ? 'height' : 'width';
     let p = !1;
-    return e.reduce((e, t) => '' === e[e.length - 1] && -1 !== ['+', '-'].indexOf(t) ? (e[e.length - 1] = t, p = !0, e) : p ? (e[e.length - 1] += t, p = !1, e) : e.concat(t), []).map(e => le(e, i, t, o));
+    return e.reduce((e, t) => '' === e[e.length - 1] && -1 !== ['+', '-'].indexOf(t) ? (e[e.length - 1] = t, p = !0, e) : p ? (e[e.length - 1] += t, p = !1, e) : e.concat(t), []).map(e => he(e, i, t, o));
   }), f.forEach((e, t) => {
     e.forEach((o, n) => {
       J(o) && (i[t] += o * ('-' === e[n - 1] ? -1 : 1));
@@ -814,7 +832,7 @@ function me(e, t, o, n) {
   }), i;
 }
 
-function he(e, {
+function ue(e, {
   offset: t
 }) {
   const {
@@ -826,10 +844,10 @@ function he(e, {
   } = e,
         r = o.split('-')[0];
   let p;
-  return p = J(+t) ? [+t, 0] : me(t, n, i, r), 'left' === r ? (n.top += p[0], n.left -= p[1]) : 'right' === r ? (n.top += p[0], n.left += p[1]) : 'top' === r ? (n.left += p[0], n.top -= p[1]) : 'bottom' === r && (n.left += p[0], n.top += p[1]), e.popper = n, e;
+  return p = J(+t) ? [+t, 0] : ce(t, n, i, r), 'left' === r ? (n.top += p[0], n.left -= p[1]) : 'right' === r ? (n.top += p[0], n.left += p[1]) : 'top' === r ? (n.left += p[0], n.top -= p[1]) : 'bottom' === r && (n.left += p[0], n.top += p[1]), e.popper = n, e;
 }
 
-function ce(e, t) {
+function ge(e, t) {
   let o = t.boundariesElement || c(e.instance.popper);
   e.instance.reference === o && (o = c(o));
   const n = V('transform'),
@@ -867,7 +885,7 @@ function ce(e, t) {
   }), e.offsets.popper = a, e;
 }
 
-function ue(e) {
+function be(e) {
   const t = e.placement,
         o = t.split('-')[0],
         n = t.split('-')[1];
@@ -894,10 +912,10 @@ function ue(e) {
   return e;
 }
 
-function ge(e) {
-  if (!oe(e.instance.modifiers, 'hide', 'preventOverflow')) return e;
+function we(e) {
+  if (!ie(e.instance.modifiers, 'hide', 'preventOverflow')) return e;
   const t = e.offsets.reference,
-        o = I(e.instance.modifiers, e => 'preventOverflow' === e.name).boundaries;
+        o = F(e.instance.modifiers, e => 'preventOverflow' === e.name).boundaries;
 
   if (t.bottom < o.top || t.left > o.right || t.top > o.bottom || t.right < o.left) {
     if (!0 === e.hide) return e;
@@ -910,7 +928,7 @@ function ge(e) {
   return e;
 }
 
-function be(e) {
+function ye(e) {
   const t = e.placement,
         o = t.split('-')[0],
         {
@@ -919,25 +937,25 @@ function be(e) {
   } = e.offsets,
         r = -1 !== ['left', 'right'].indexOf(o),
         p = -1 === ['top', 'left'].indexOf(o);
-  return n[r ? 'left' : 'top'] = i[o] - (p ? n[r ? 'width' : 'height'] : 0), e.placement = A(t), e.offsets.popper = S(n), e;
+  return n[r ? 'left' : 'top'] = i[o] - (p ? n[r ? 'width' : 'height'] : 0), e.placement = A(t), e.offsets.popper = L(n), e;
 }
 
-var we = {
+var Ee = {
   shift: {
     order: 100,
     enabled: !0,
-    fn: ue
+    fn: be
   },
   offset: {
     order: 200,
     enabled: !0,
-    fn: he,
+    fn: ue,
     offset: 0
   },
   preventOverflow: {
     order: 300,
     enabled: !0,
-    fn: ce,
+    fn: ge,
     priority: ['left', 'right', 'top', 'bottom'],
     padding: 5,
     boundariesElement: 'scrollParent'
@@ -945,18 +963,18 @@ var we = {
   keepTogether: {
     order: 400,
     enabled: !0,
-    fn: ae
+    fn: me
   },
   arrow: {
     order: 500,
     enabled: !0,
-    fn: ne,
+    fn: re,
     element: '[x-arrow]'
   },
   flip: {
     order: 600,
     enabled: !0,
-    fn: fe,
+    fn: le,
     behavior: 'flip',
     padding: 5,
     boundariesElement: 'viewport'
@@ -964,17 +982,17 @@ var we = {
   inner: {
     order: 700,
     enabled: !1,
-    fn: be
+    fn: ye
   },
   hide: {
     order: 800,
     enabled: !0,
-    fn: ge
+    fn: we
   },
   computeStyle: {
     order: 850,
     enabled: !0,
-    fn: te,
+    fn: ne,
     gpuAcceleration: !0,
     x: 'bottom',
     y: 'right'
@@ -987,24 +1005,24 @@ var we = {
     gpuAcceleration: void 0
   }
 },
-    ye = {
+    xe = {
   placement: 'bottom',
   positionFixed: !1,
   eventsEnabled: !0,
   removeOnDestroy: !1,
   onCreate: () => {},
   onUpdate: () => {},
-  modifiers: we
+  modifiers: Ee
 };
 
-class Ee {
+class ve {
   constructor(e, t, o = {}) {
-    this.scheduleUpdate = () => requestAnimationFrame(this.update), this.update = p(this.update.bind(this)), this.options = O({}, Ee.Defaults, o), this.state = {
+    this.scheduleUpdate = () => requestAnimationFrame(this.update), this.update = p(this.update.bind(this)), this.options = O({}, ve.Defaults, o), this.state = {
       isDestroyed: !1,
       isCreated: !1,
       scrollParents: []
-    }, this.reference = e && e.jquery ? e[0] : e, this.popper = t && t.jquery ? t[0] : t, this.options.modifiers = {}, Object.keys(O({}, Ee.Defaults.modifiers, o.modifiers)).forEach(e => {
-      this.options.modifiers[e] = O({}, Ee.Defaults.modifiers[e] || {}, o.modifiers ? o.modifiers[e] : {});
+    }, this.reference = e && e.jquery ? e[0] : e, this.popper = t && t.jquery ? t[0] : t, this.options.modifiers = {}, Object.keys(O({}, ve.Defaults.modifiers, o.modifiers)).forEach(e => {
+      this.options.modifiers[e] = O({}, ve.Defaults.modifiers[e] || {}, o.modifiers ? o.modifiers[e] : {});
     }), this.modifiers = Object.keys(this.options.modifiers).map(e => O({
       name: e
     }, this.options.modifiers[e])).sort((e, t) => e.order - t.order), this.modifiers.forEach(e => {
@@ -1023,7 +1041,7 @@ class Ee {
   }
 
   enableEventListeners() {
-    return z.call(this);
+    return G.call(this);
   }
 
   disableEventListeners() {
@@ -1032,8 +1050,8 @@ class Ee {
 
 }
 
-Ee.Utils = ('undefined' == typeof window ? global : window).PopperUtils, Ee.placements = re, Ee.Defaults = ye;
-var _default = Ee;
+ve.Utils = ('undefined' == typeof window ? global : window).PopperUtils, ve.placements = de, ve.Defaults = xe;
+var _default = ve;
 exports.default = _default;
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -1062,7 +1080,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38439" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35043" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

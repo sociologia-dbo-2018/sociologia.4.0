@@ -5,11 +5,11 @@ block head
 block content
     div.container-fluid.d-flex
         div.d-flex.w-100.align-items-center.mb-5.flex-column
-            div.mapa.d-flex.flex-column
+            div.mapa.d-flex.flex-column.align-items-center
                 h2.align-self-start.ml-5.mb-5.mt-5 Selecione o local:
-                img(src="https://rocketz.com.br/assets/store/img-store-cu-map-100123ec35cb58f100158e68b53bcd0c77a7f5120769df584d4aa67bb56e1c8c.jpg").w-100
-            form.w-100
-                div.selecao.list-group.d-none
+                img(src="https://rocketz.com.br/assets/store/img-store-cu-map-100123ec35cb58f100158e68b53bcd0c77a7f5120769df584d4aa67bb56e1c8c.jpg").w-75
+            form.w-100.d-flex.align-items-center
+                div.selecao.list-group.w-100
                     div.form-check.list-group-item
                         input#material.tipo_violencia(type="radio", name="tipo", value="material")
                         label(for="material") Material
@@ -26,203 +26,239 @@ block content
                         input#psicologica.tipo_violencia(type="radio", name="tipo", value="psicologica")
                         label(for="psicologica").title Psicológia
 
-                div.material.opcoes
-                    input(type="radio", name="opcoes", value="material_roubo").material#material_roubo
-                    label(for="material_roubo") Roubo
+                div.material.opcoes.list-group.w-100
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="material_roubo").material#material_roubo
+                        label(for="material_roubo") Roubo
 
-                    input(type="radio", name="opcoes",
-                        value="material_tentativa_assalto").material#material_tentativa_assalto
-                    label(for="material_tentativa_assalto") Tentativa de Assalto
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="material_tentativa_assalto").material#material_tentativa_assalto
+                        label(for="material_tentativa_assalto") Tentativa de Assalto
 
-                    input(type="radio", name="opcoes", value="material_furto").material#material_furto
-                    label(for="material_furto") Furto
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="material_furto").material#material_furto
+                        label(for="material_furto") Furto
 
-                    input(type="radio", name="opcoes",
-                        value="material_dano_propriedade").material#material_dano_propriedade
-                    label(for="material_dano_propriedade") Dano a Propriedade
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="material_dano_propriedade").material#material_dano_propriedade
+                        label(for="material_dano_propriedade") Dano a Propriedade
 
-                    input(type="radio", name="opcoes",
-                        value="material_outros").material#material_outros
-                    label(for="material_outros") Outros tipos de Violência Material
-                div.fisica.opcoes
-                    input(type="radio", name="opcoes", value="fisica_sequestro").fisica#fisica_sequestro
-                    label(for="fisica_sequestro") Sequestro
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="material_outros").material#material_outros
+                        label(for="material_outros") Outros tipos de Violência Material
+                div.fisica.opcoes.list-group.w-100
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="fisica_sequestro").fisica#fisica_sequestro
+                        label(for="fisica_sequestro") Sequestro
 
-                    input(type="radio", name="opcoes",
-                        value="fisica_tentativa_sequestro").fisica#fisica_tentativa_sequestro
-                    label(for="fisica_tentativa_sequestro") Tentativa de Sequestro
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="fisica_tentativa_sequestro").fisica#fisica_tentativa_sequestro
+                        label(for="fisica_tentativa_sequestro") Tentativa de Sequestro
 
-                    input(type="radio", name="opcoes",
-                        value="fisica_agressao_fisica").fisica#fisica_agressao_fisica
-                    label(for="fisica_agressao_fisica") Agressão Fisíca
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="fisica_agressao_fisica").fisica#fisica_agressao_fisica
+                        label(for="fisica_agressao_fisica") Agressão Fisíca
 
-                    input(type="radio", name="opcoes", value="fisica_agressao_arma_fogo").fisica#fisica_agressao_arma_fogo
-                    label(for="fisica_agressao_arma_fogo") Agressão com arma de fogo
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="fisica_agressao_arma_fogo").fisica#fisica_agressao_arma_fogo
+                        label(for="fisica_agressao_arma_fogo") Agressão com arma de fogo
 
-                    input(type="radio", name="opcoes",
-                        value="fisica_agressao_arma_branca").fisica#fisica_agressao_arma_branca
-                    label(for="fisica_agressao_arma_branca") Agressão com arma branca
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="fisica_agressao_arma_branca").fisica#fisica_agressao_arma_branca
+                        label(for="fisica_agressao_arma_branca") Agressão com arma branca
 
-                    input(type="radio", name="opcoes",
-                        value="fisica_agressao_outros_objetos").fisica#fisica_agressao_outros_objetos
-                    label(for="fisica_agressao_outros_objetos") Agressão com outros objetos
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="fisica_agressao_outros_objetos").fisica#fisica_agressao_outros_objetos
+                        label(for="fisica_agressao_outros_objetos") Agressão com outros objetos
 
-                    input(type="radio", name="opcoes", value="fisica_assassinato").fisica#fisica_assassinato
-                    label(for="fisica_assassinato") Assassinato
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="fisica_assassinato").fisica#fisica_assassinato
+                        label(for="fisica_assassinato") Assassinato
 
-                    input(type="radio", name="opcoes",
-                        value="fisica_tentativa_assassinato").fisica#fisica_tentativa_assassinato
-                    label(for="fisica_tentativa_assassinato") Tentativa de Assassinato
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="fisica_tentativa_assassinato").fisica#fisica_tentativa_assassinato
+                        label(for="fisica_tentativa_assassinato") Tentativa de Assassinato
 
-                    input(type="radio", name="opcoes", value="fisica_briga").fisica#fisica_briga
-                    label(for="fisica_briga") Briga
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="fisica_briga").fisica#fisica_briga
+                        label(for="fisica_briga") Briga
 
-                    input(type="radio", name="opcoes", value="fisica_carcere_privado").fisica#fisica_carcere_privado
-                    label(for="fisica_carcere_privado") Cárcere Privado
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="fisica_carcere_privado").fisica#fisica_carcere_privado
+                        label(for="fisica_carcere_privado") Cárcere Privado
 
-                    input(type="radio", name="opcoes", value="fisica_tortura").fisica#fisica_tortura
-                    label(for="fisica_tortura") Tortura
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="fisica_tortura").fisica#fisica_tortura
+                        label(for="fisica_tortura") Tortura
 
-                    input(type="radio", name="opcoes",
-                        value="fisica_outros").fisica#fisica_outros
-                    label(for="fisica_outros") Outros tipos de Violência Física
-                div.sexual.opcoes
-                    input(type="radio", name="opcoes", value="sexual_estupro").sexual#sexual_estupro
-                    label(for="sexual_estupro") Estupro
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="fisica_outros").fisica#fisica_outros
+                        label(for="fisica_outros") Outros tipos de Violência Física
+                div.sexual.opcoes.list-group.w-100
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_estupro").sexual#sexual_estupro
+                        label(for="sexual_estupro") Estupro
 
-                    input(type="radio", name="opcoes", value="sexual_tentativa_estupro").sexual#sexual_tentativa_estupro
-                    label(for="sexual_tentativa_estupro") Tentativa de Estupro
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_tentativa_estupro").sexual#sexual_tentativa_estupro
+                        label(for="sexual_tentativa_estupro") Tentativa de Estupro
 
-                    input(type="radio", name="opcoes", value="sexual_assedio_sexual").sexual#sexual_assedio_sexual
-                    label(for="sexual_assedio_sexual") Assédio Sexual
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_assedio_sexual").sexual#sexual_assedio_sexual
+                        label(for="sexual_assedio_sexual") Assédio Sexual
 
-                    input(type="radio", name="opcoes", value="sexual_assedio_fisico").sexual#sexual_assedio_fisico
-                    label(for="sexual_assedio_fisico") Assédio Físico
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_assedio_fisico").sexual#sexual_assedio_fisico
+                        label(for="sexual_assedio_fisico") Assédio Físico
 
-                    input(type="radio", name="opcoes", value="sexual_assedio_moral").sexual#sexual_assedio_moral
-                    label(for="sexual_assedio_moral") Assédio Moral
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_assedio_moral").sexual#sexual_assedio_moral
+                        label(for="sexual_assedio_moral") Assédio Moral
 
-                    input(type="radio", name="opcoes", value="sexual_assedio_verbal").sexual#sexual_assedio_verbal
-                    label(for="sexual_assedio_verbal") Assédio Verbal
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_assedio_verbal").sexual#sexual_assedio_verbal
+                        label(for="sexual_assedio_verbal") Assédio Verbal
 
-                    input(type="radio", name="opcoes", value="sexual_assassinato").sexual#sexual_assassinato
-                    label(for="sexual_assassinato") Assassinato
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_assassinato").sexual#sexual_assassinato
+                        label(for="sexual_assassinato") Assassinato
 
-                    input(type="radio", name="opcoes",
-                        value="sexual_tentativa_assassinato").sexual#sexual_tentativa_assassinato
-                    label(for="sexual_tentativa_assassinato") Tentativa de Assassinato
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="sexual_tentativa_assassinato").sexual#sexual_tentativa_assassinato
+                        label(for="sexual_tentativa_assassinato") Tentativa de Assassinato
 
-                    input(type="radio", name="opcoes", value="sexual_carcere_privado").sexual#sexual_carcere_privado
-                    label(for="sexual_carcere_privado") Cárcere Privado
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_carcere_privado").sexual#sexual_carcere_privado
+                        label(for="sexual_carcere_privado") Cárcere Privado
 
-                    input(type="radio", name="opcoes", value="sexual_bullying").sexual#sexual_bullying
-                    label(for="sexual_bullying") Bullying/ciberbullying
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_bullying").sexual#sexual_bullying
+                        label(for="sexual_bullying") Bullying/ciberbullying
 
-                    input(type="radio", name="opcoes", value="sexual_ameacas").sexual#sexual_ameacas
-                    label(for="sexual_ameacas") Ameaças
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_ameacas").sexual#sexual_ameacas
+                        label(for="sexual_ameacas") Ameaças
 
-                    input(type="radio", name="opcoes", value="sexual_tortura").sexual#sexual_tortura
-                    label(for="sexual_tortura") Tortura
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_tortura").sexual#sexual_tortura
+                        label(for="sexual_tortura") Tortura
 
-                    input(type="radio", name="opcoes", value="sexual_outros").sexual#sexual_outros
-                    label(for="sexual_outros") Outros tipos de Violência Sexual
-                div.psicologica.opcoes
-                    input(type="radio", name="opcoes",
-                        value="psicologica_assedio_verbal").psicologica#psicologica_assedio_verbal
-                    label(for="psicologica_assedio_verbal") Assedio Verbal
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="sexual_outros").sexual#sexual_outros
+                        label(for="sexual_outros") Outros tipos de Violência Sexual
+                div.psicologica.opcoes.list-group.w-100
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="psicologica_assedio_verbal").psicologica#psicologica_assedio_verbal
+                        label(for="psicologica_assedio_verbal") Assedio Verbal
 
-                    input(type="radio", name="opcoes", value="psicologica_bullying").psicologica#psicologica_bullying
-                    label(for="psicologica_bullying") Bullying/ciberbullying
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="psicologica_bullying").psicologica#psicologica_bullying
+                        label(for="psicologica_bullying") Bullying/ciberbullying
 
-                    input(type="radio", name="opcoes", value="psicologica_ameacas").psicologica#psicologica_ameacas
-                    label(for="psicologica_ameacas") Ameaças
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="psicologica_ameacas").psicologica#psicologica_ameacas
+                        label(for="psicologica_ameacas") Ameaças
 
-                    input(type="radio", name="opcoes",
-                        value="psicologica_tortura_psicologica").psicologica#psicologica_tortura_psicologica
-                    label(for="psicologica_tortura_psicologica") Tortura Psicológica
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes",
+                            value="psicologica_tortura_psicologica").psicologica#psicologica_tortura_psicologica
+                        label(for="psicologica_tortura_psicologica") Tortura Psicológica
 
-                    input(type="radio", name="opcoes", value="psicologica_outros").psicologica#psicologica_outros
-                    label(for="psicologica_outros") Outros tipos de Violência Psicológica
+                    div.form-check.list-group-item
+                        input(type="radio", name="opcoes", value="psicologica_outros").psicologica#psicologica_outros
+                        label(for="psicologica_outros") Outros tipos de Violência Psicológica
 
-                div.opcional.d-none
-                    p.questao Você se importaria de responder 4 questões antes de enviar o formulário?
-                    div.btn-group
-                        button.btn.btn-primary Sim
-                        button.btn.btn-secondary Não
-                    .questoes_opcionais.d-none
-                        div.genero
+                div.opcional.w-100
+                    div.pergunta
+                        p.questao Você se importaria de responder 4 questões antes de enviar o formulário?
+                        div.btn-group
+                            button.btn.btn-primary Sim
+                            button.btn.btn-secondary Não
+                    div.questoes_opcionais
+                        div.genero.form-check.list-group-item
                             h4 Qual é o seu gênero?
-                            input#genero_masculino(type="radio", name="genero",     
+                            input#genero_masculino(type="radio", name="genero",
                                 value="genero_masculino")
                             label(for="genero_masculino") Masculino
 
-                            input#genero_feminino(type="radio", name="genero",  
+                            input#genero_feminino(type="radio", name="genero",
                                 value="genero_feminino")
                             label(for="genero_feminino") Feminino
 
-                            input#genero_outro(type="radio", name="genero",  
+                            input#genero_outro(type="radio", name="genero",
                                 value="genero_outro")
                             label(for="genero_outro") Outro
 
-                        div.etnia
+                        div.etnia.form-check.list-group-item
                             h4 Qual é o sua raça/cor/etnia?
-                            input#etnia_branco(type="radio", name="etnia",     
+                            input#etnia_branco(type="radio", name="etnia",
                                 value="etnia_branco")
                             label(for="etnia_branco") Branco
 
-                            input#etnia_negro(type="radio", name="etnia",  
+                            input#etnia_negro(type="radio", name="etnia",
                                 value="etnia_negro")
                             label(for="etnia_negro") Negro
 
-                            input#etnia_indigena(type="radio", name="etnia",  
+                            input#etnia_indigena(type="radio", name="etnia",
                                 value="etnia_indigena")
                             label(for="etnia_indigena") Indígena
 
-                            input#etnia_pardo(type="radio", name="etnia",  
+                            input#etnia_pardo(type="radio", name="etnia",
                                 value="etnia_pardo")
                             label(for="etnia_pardo") Pardo
 
-                            input#etnia_outro(type="radio", name="etnia",  
+                            input#etnia_outro(type="radio", name="etnia",
                                 value="etnia_outro")
                             label(for="etnia_outro") Outro
-                        
-                        div.idade
+
+                        div.idade.form-check.list-group-item
                             h4 Qual é o sua faixa etária?
-                            input#idade_17(type="radio", name="idade",     
+                            input#idade_17(type="radio", name="idade",
                                 value="idade_17")
                             label(for="idade_17") Até 17 anos
 
-                            input#idade_25(type="radio", name="idade",  
+                            input#idade_25(type="radio", name="idade",
                                 value="idade_25")
                             label(for="idade_25") De 18 a 25 anos
 
-                            input#idade_35(type="radio", name="idade",  
+                            input#idade_35(type="radio", name="idade",
                                 value="idade_25")
                             label(for="idade_25") De 25 a 35 anos
 
-                            input#idade_45(type="radio", name="idade",  
+                            input#idade_45(type="radio", name="idade",
                                 value="idade_45")
                             label(for="idade_45") De 36 a 45 anos
 
-                            input#idade_55(type="radio", name="idade",  
+                            input#idade_55(type="radio", name="idade",
                                 value="idade_55")
                             label(for="idade_55") De 46 a 55 anos
 
-                            input#idade_70(type="radio", name="idade",  
+                            input#idade_70(type="radio", name="idade",
                                 value="idade_70")
                             label(for="idade_70") De 56 a 70 anos
 
-                            input#idade_71(type="radio", name="idade",  
+                            input#idade_71(type="radio", name="idade",
                                 value="idade_71")
                             label(for="idade_71") 71 anos ou mais
-                        
-                        div.etnia
+
+                        div.classe_social.form-check.list-group-item
                             h4 Qual é o sua classe social?
-                            input#classe_social_pobre(type="radio", name="classe_social",     
+                            input#classe_social_pobre(type="radio", name="classe_social",
                                 value="classe_social_pobre")
                             label(for="classe_social_pobre") Pobre
 
-                            input#classe_social_media_baixa(type="radio", 
+                            input#classe_social_media_baixa(type="radio",
                                 name="classe_social", value="classe_social_media_baixa")
                             label(for="classe_social_media_baixa") Classe média baixa
 
@@ -230,7 +266,7 @@ block content
                                 value="classe_social_media")
                             label(for="classe_social_media") Classe média
 
-                            input#classe_social_media_alta(type="radio", 
+                            input#classe_social_media_alta(type="radio",
                                 name="classe_social", value="classe_social_media_alta")
                             label(for="classe_social_media_alta") Classe média alta
 
@@ -241,6 +277,8 @@ block content
                             input#classe_social_outro(type="radio", name="classe_social",
                                 value="classe_social_outro")
                             label(for="classe_social_outro") Outro
+        div.btn-group.envia
+            button#voltarFormulario.d-flex.align-self-end.btn.btn-primary.mt-5 Voltar
             button#enviarFormulario.d-flex.align-self-end.btn.btn-secondary.mt-5 Enviar
 block foot.sugestion
 block script

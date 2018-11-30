@@ -1,3 +1,15 @@
 .opcoes {
     display: none;
 }
+
+.opcional {
+    display: none;
+}
+
+.selecao {
+    display: none;
+}
+
+.questoes_opcionais  {
+    display: none;
+}

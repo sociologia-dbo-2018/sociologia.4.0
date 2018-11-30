@@ -110,73 +110,133 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.questaoOpcional = exports.secondPartForm = exports.nextForm = void 0;
+exports.functions = void 0;
 var divMapa = document.querySelector('.mapa');
 var divSelecao = document.querySelector('.selecao');
 var inputs = document.querySelectorAll('.selecao input');
 var divOpcional = document.querySelector('.opcional');
+var divOpcionais = document.querySelector('.questoes_opcionais');
+var buttonForm = document.querySelector('div.envia');
 var divForm = null;
+var functions = {
+  flagForm: 0,
+  firstForm: function firstForm() {
+    // e.preventDefault();
+    divMapa.className = 'd-none';
+    divSelecao.style.display = 'flex';
+    this.flagForm++;
+  },
+  secondForm: function secondForm() {
+    // e.preventDefault();
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-var nextForm = function nextForm(e) {
-  e.preventDefault();
-  divMapa.style.display = 'none';
-  divSelecao.style.display = 'inline';
-};
+    try {
+      for (var _iterator = inputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var input = _step.value;
 
-exports.nextForm = nextForm;
-
-var secondPartForm = function secondPartForm(e) {
-  e.preventDefault();
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
-  try {
-    for (var _iterator = inputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var input = _step.value;
-
-      if (input.checked) {
-        var value = input.value;
-        divForm = document.querySelector("div.".concat(value, ".opcoes"));
-        div.style.display = 'inline';
-        divSelecao.style.display = 'none';
+        if (input.checked) {
+          var value = input.value;
+          divForm = document.querySelector("div.".concat(value, ".opcoes"));
+          divSelecao.style.display = 'none';
+          divForm.style.display = 'flex';
+          this.flagForm++;
+        }
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
       }
     }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
+  },
+  thirdForm: function thirdForm() {
+    divForm.style.display = 'none';
+    divOpcional.className = '.opcional.w-100.d-flex.flex-column';
+    buttonForm.style.display = 'none';
+    this.flagForm++;
+  },
+  lastForm: function lastForm() {
+    divOpcionais.className = 'd-flex';
+    divOpcionais.className = '.questoes_opcionais.w-100.list-group.d-flex.flex-columun';
+  },
+  returnForm: function returnForm() {
+    // e.preventDefault();
+    if (this.flagForm === 1) {
+      divMapa.className = 'd-flex.flex-column.align-items-center';
+      divSelecao.style.display = 'none';
+      this.flagForm--;
+    } else if (this.flagForm === 2) {
+      divForm = document.querySelectorAll("div.opcoes");
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = divForm[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var div = _step2.value;
+          div.style.display = 'none';
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
       }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
+
+      divSelecao.style.display = 'flex';
+      this.flagForm--;
     }
   }
-};
+}; // export const questaoOpcional = function(e) {
+//     e.preventDefault();
+// }
 
-exports.secondPartForm = secondPartForm;
-
-var questaoOpcional = function questaoOpcional(e) {
-  e.preventDefault();
-  divForm.style.display = 'none';
-  divOpcional.style.display = 'inline';
-};
-
-exports.questaoOpcional = questaoOpcional;
+exports.functions = functions;
 },{}],"../js/report.js":[function(require,module,exports) {
 "use strict";
 
 var _formReportControl = require("../modules/formReportControl.js");
 
-var button = document.querySelector('button#enviarFormulario');
+var buttonEnviar = document.querySelector('button#enviarFormulario');
+var buttonVoltar = document.querySelector('button#voltarFormulario');
 var divSelecao = document.querySelector('.selecao');
 var divOpcionais = document.querySelectorAll('.opcoes');
-button.addEventListener('click', _formReportControl.nextForm);
-divSelecao.addEventListener('click', _formReportControl.secondPartForm);
+buttonEnviar.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (_formReportControl.functions.flagForm === 0) {
+    _formReportControl.functions.firstForm();
+  } else if (_formReportControl.functions.flagForm === 1) {
+    _formReportControl.functions.secondForm();
+  } else if (_formReportControl.functions.flagForm === 2) {
+    _formReportControl.functions.thirdForm();
+  } else if (_formReportControl.functions.flagForm === 3) {
+    _formReportControl.functions.lastForm();
+  }
+});
+buttonVoltar.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  _formReportControl.functions.returnForm();
+}); // divSelecao.addEventListener('click', functions.secondForm);
 },{"../modules/formReportControl.js":"../modules/formReportControl.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -204,7 +264,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38439" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35043" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
