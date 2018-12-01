@@ -19,3 +19,12 @@ h1 {
     color: rgba(48, 48, 48, 0.74);
     max-width: 78ch;
 }
+
+.interation {
+    height: 350px;
+}
+
+div.header > a {
+    height: 40px;
+    width: 15%;
+}

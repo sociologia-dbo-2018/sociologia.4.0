@@ -622,32 +622,35 @@ var loadMap = function loadMap() {
   googleMaps.LANGUAGE = 'br';
   googleMaps.load(function (google) {
     var map = new google.maps.Map(divMap, {
-      zoom: 14
+      zoom: 14,
+      maxZoom: 17,
+      minZoom: 3
     });
     var markers = [];
     navigator.geolocation.getCurrentPosition(function (position) {
       map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     });
     google.maps.event.addListener(map, 'click', function (e) {
-      // if (document.URL.includes('report')) {
-      var marker = new google.maps.Marker({
-        position: e.latLng,
-        map: map,
-        icon: {
-          path: google.maps.SymbolPath.CIRCLE,
-          fillColor: '#00FFFF',
-          fillOpacity: .2,
-          strokeColor: 'white',
-          strokeWeight: .5,
-          scale: 30
-        }
-      });
-      var latLong = {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng()
-      };
-      markers.push(latLong);
-      console.log(markers); // } else { }
+      if (divMap != undefined) {
+        var marker = new google.maps.Marker({
+          position: e.latLng,
+          map: map,
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#00FFFF',
+            fillOpacity: .2,
+            strokeColor: 'white',
+            strokeWeight: .5,
+            scale: 30
+          }
+        });
+        var latLong = {
+          lat: e.latLng.lat(),
+          lng: e.latLng.lng()
+        };
+        markers.push(latLong);
+        console.log(markers);
+      } else {}
     });
   });
 };
@@ -701,7 +704,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35043" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41869" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

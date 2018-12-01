@@ -9,16 +9,15 @@ block content
             //- a(href="./about.pug")  Ler mais
     hr.w-50
     div.feed.container-fluid.d-flex.flex-column
-        h2.ml-4 Feed
-        div.interation.d-flex.flex-row
-            div#mapIndex.w-75             
+        div.header.d-flex.justify-content-between
+            h2.ml-4 Feed
+            a.btn.btn-outline-dark.btn-lg.btn-block.mt-4.align-self-end.d-flex.align-items-center.justify-content-center(href="./report.pug") Reportar
+        div.interation.d-flex.flex-row.w-100
+            div#mapIndex.w-50.m-3
 
-            div.optionsReport.w-50.mt-5
-                h3 Tipo de violencia
-                hr
+            div.optionsReport.w-50.m-3.d-flex.flex-column.align-self-center
                 ul.list-group.w-150.d-flex.news
                     //- Para reinderização de rss de noticias externas
-                a.btn.btn-outline-dark.btn-lg.btn-block.mt-4(href="./report.pug") Reportar
 block foot.sugestion
 block script
     script(src="../js/main.js")
