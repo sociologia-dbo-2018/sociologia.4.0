@@ -2,14 +2,19 @@ import {db} from './fb.js';
 
 export const firebaseControl = {
     sendForm: function(object) {
-        const database = db.ref()
-            .child(`dados/${object.first}/${object.second}`);
+        const write = (reference) => {
+            const database = db.ref(reference);
+            database.once('value').then((snapshot) => {
+                (snapshot.val() === null) ? database.set(1):database.set(snapshot.val() + 1);
+            });
+        }
 
-        console.log(database);
-        // const value = database.val() ++;
-        // database.set(value);
-        something = null;
-        database.push(something);
+        write(`violences/${object.first}/${object.second}`);
+
+        const keys = Object.keys(object.opcionais);
+        const values = Object.values(object.opcionais);
+
+        for (let i=0; i<keys.length; i++) write(`other_dates/${keys[i]}/${values[i]}`);
     },
     sendMap: function(object) {
 
