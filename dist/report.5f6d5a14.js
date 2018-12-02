@@ -66236,14 +66236,13 @@ var divOpcional = document.querySelector('.opcional');
 var divOpcionais = document.querySelector('.questoes_opcionais');
 var buttonEnvia = document.querySelector('button#enviarFormulario');
 var divPergunta = document.querySelector('.pergunta');
-var mansagemFinal = document.querySelector('.mensagem');
+var mensagemFinal = document.querySelector('.mensagem');
 var inputsOpcionais = document.querySelectorAll('.questoes_opcionais input');
 var divForm = null;
 var functions = {
   object: {},
   flagForm: 0,
   firstForm: function firstForm() {
-    // e.preventDefault();
     divMapa.className = 'd-none';
     divSelecao.className = 'selecao w-100 d-flex flex-column';
     this.flagForm++;
@@ -66252,7 +66251,6 @@ var functions = {
 
   },
   secondForm: function secondForm() {
-    // e.preventDefault();
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
@@ -66297,8 +66295,6 @@ var functions = {
         var input = _step2.value;
 
         if (input.checked) {
-          // console.log(divForm);
-          // console.log(input.parentElement.parentElement.parentElement);
           divForm.className = "".concat(this.object.first, " opcoes d-none");
           divPergunta.className = 'pergunta d-flex flex-column align-items-center';
           divOpcional.className = 'opcional w-100 d-flex justify-content-center';
@@ -66327,7 +66323,6 @@ var functions = {
     buttonEnvia.className = 'btn btn-secondary';
     divOpcionais.className = 'd-flex questoes_opcionais w-100 list-group flex-columun';
     this.flagForm++;
-    console.log(this.flagForm);
   },
   optionalForm: function optionalForm() {
     this.object.opcionais = {};
@@ -66369,12 +66364,14 @@ var functions = {
     this.sendToFirebase();
   },
   sendToFirebase: function sendToFirebase() {
-    console.log(this.object); // mansagemFinal.className = 'mensagem d-flex';
+    divOpcional.className = 'd-none';
+    buttonEnvia.parentElement.className = 'd-none';
+    mensagemFinal.className = 'mensagem d-flex align-items-center flex-column';
+    mensagemFinal.children[1].className = 'd-flex';
 
     _firebaseControlModule.firebaseControl.sendForm(this.object);
   },
   returnForm: function returnForm() {
-    // e.preventDefault();
     if (this.flagForm === 1) {
       divMapa.className = 'd-flex flex-column align-items-center';
       divSelecao.className = 'selecao d-none';
@@ -66384,8 +66381,6 @@ var functions = {
       divSelecao.className = 'selecao w-100 d-flex flex-column';
       this.flagForm--;
     } else if (this.flagForm === 3) {
-      // const div = document
-      // .querySelector(`input#${this.object.second}`);
       divForm.className = "".concat(this.object.first, " opcoes w-100 d-flex flex-column");
       divOpcional.className = 'opcional d-none';
       divPergunta.className = 'd-none';
@@ -66393,10 +66388,7 @@ var functions = {
       this.flagForm--;
     }
   }
-}; // export const questaoOpcional = function(e) {
-//     e.preventDefault();
-// }
-
+};
 exports.functions = functions;
 },{"./firebaseControl.module.js":"../modules/firebaseControl.module.js"}],"../js/report.js":[function(require,module,exports) {
 "use strict";
@@ -66464,7 +66456,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41869" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45029" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -631,7 +631,7 @@ var loadMap = function loadMap() {
       map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     });
     google.maps.event.addListener(map, 'click', function (e) {
-      if (divMap != undefined) {
+      if (divMap !== undefined) {
         var marker = new google.maps.Marker({
           position: e.latLng,
           map: map,
@@ -704,7 +704,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41869" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45029" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

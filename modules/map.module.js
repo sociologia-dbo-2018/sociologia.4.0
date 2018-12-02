@@ -1,25 +1,24 @@
 export const loadMap = () => {
     const divMap = document.querySelector('#mapIndex');
     const googleMaps = require('google-maps');
-        // Settings
-        googleMaps.KEY = 'AIzaSyCjXATdQN6e_SpQXrEwIagb2pxE8DjG3IQ';
-        googleMaps.LIBRARIES = ['geometry', 'places', 'visualization'];
-        googleMaps.LANGUAGE = 'br';
-    
-    
-        googleMaps.load(function (google) {
-            const map = new google.maps.Map(divMap, {
-                zoom: 14,
-                maxZoom: 17,
-                minZoom: 3
-            });
-            const markers = [];
-            navigator.geolocation.getCurrentPosition(function (position) {
-                map.setCenter(new google.maps.LatLng(position.coords.latitude,
-                    position.coords.longitude));
-            });
-            google.maps.event.addListener(map, 'click', function (e) {
-                if (divMap != undefined) {
+    // Settings
+    googleMaps.KEY = 'AIzaSyCjXATdQN6e_SpQXrEwIagb2pxE8DjG3IQ';
+    googleMaps.LIBRARIES = ['geometry', 'places', 'visualization'];
+    googleMaps.LANGUAGE = 'br';
+
+    googleMaps.load(function(google) {
+        const map = new google.maps.Map(divMap, {
+            zoom: 14,
+            maxZoom: 17,
+            minZoom: 3
+        });
+        const markers = [];
+        navigator.geolocation.getCurrentPosition(function(position) {
+            map.setCenter(new google.maps.LatLng(position.coords.latitude,
+                position.coords.longitude));
+        });
+        google.maps.event.addListener(map, 'click', function(e) {
+            if (divMap !== undefined) {
                 const marker = new google.maps.Marker({
                     position: e.latLng,
                     map: map,
@@ -32,10 +31,12 @@ export const loadMap = () => {
                         scale: 30
                     }
                 });
-                const latLong = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+                const latLong = {
+                    lat: e.latLng.lat(), lng: e.latLng.lng()
+                };
                 markers.push(latLong);
                 console.log(markers);
-                } else { }
-            });
+            } else { }
         });
-} 
+    });
+}

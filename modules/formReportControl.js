@@ -7,16 +7,14 @@ const divOpcional = document.querySelector('.opcional');
 const divOpcionais = document.querySelector('.questoes_opcionais');
 const buttonEnvia = document.querySelector('button#enviarFormulario');
 const divPergunta = document.querySelector('.pergunta');
-const mansagemFinal = document.querySelector('.mensagem');
+const mensagemFinal = document.querySelector('.mensagem');
 const inputsOpcionais = document.querySelectorAll('.questoes_opcionais input');
-
 let divForm = null;
 
 export const functions = {
     object: {},
     flagForm: 0,
     firstForm: function() {
-        // e.preventDefault();
         divMapa.className = 'd-none';
         divSelecao.className = 'selecao w-100 d-flex flex-column';
         this.flagForm++;
@@ -24,7 +22,6 @@ export const functions = {
         // firebaseControl.sendMap(obj);
     },
     secondForm: function() {
-        // e.preventDefault();
         for (const input of inputs) {
             if (input.checked) {
                 const value = input.value;
@@ -42,8 +39,6 @@ export const functions = {
             `div.${this.object.first}.opcoes input`);
         for (const input of inputs) {
             if (input.checked) {
-                // console.log(divForm);
-                // console.log(input.parentElement.parentElement.parentElement);
                 divForm.className =
                     `${this.object.first} opcoes d-none`;
                 divPergunta.className =
@@ -62,7 +57,6 @@ export const functions = {
         divOpcionais.className =
             'd-flex questoes_opcionais w-100 list-group flex-columun';
         this.flagForm++;
-        console.log(this.flagForm);
     },
     optionalForm: function() {
         this.object.opcionais = {};
@@ -82,12 +76,14 @@ export const functions = {
         this.sendToFirebase();
     },
     sendToFirebase: function() {
-        console.log(this.object);
-        // mansagemFinal.className = 'mensagem d-flex';
+        divOpcional.className = 'd-none';
+        buttonEnvia.parentElement.className = 'd-none';
+        mensagemFinal.className =
+            'mensagem d-flex align-items-center flex-column';
+        mensagemFinal.children[1].className = 'd-flex';
         firebaseControl.sendForm(this.object);
     },
     returnForm: function() {
-        // e.preventDefault();
         if (this.flagForm === 1) {
             divMapa.className = 'd-flex flex-column align-items-center';
             divSelecao.className = 'selecao d-none';
@@ -97,9 +93,8 @@ export const functions = {
             divSelecao.className = 'selecao w-100 d-flex flex-column';
             this.flagForm--;
         } else if (this.flagForm === 3) {
-            // const div = document
-                // .querySelector(`input#${this.object.second}`);
-            divForm.className = `${this.object.first} opcoes w-100 d-flex flex-column`;
+            divForm.className =
+            `${this.object.first} opcoes w-100 d-flex flex-column`;
             divOpcional.className = 'opcional d-none';
             divPergunta.className = 'd-none';
             buttonEnvia.className = 'btn btn-secondary';
@@ -107,7 +102,3 @@ export const functions = {
         }
     }
 };
-
-// export const questaoOpcional = function(e) {
-//     e.preventDefault();
-// }
