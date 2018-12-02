@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Statistics Page</title>
+</head>
+<body>
+    <div id="chart"></div> 
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  
+    <div id='map'></div>
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDyRDiiJ6R-DWwaJmLD9xTCNEuiaOU5JvA&amp;sensor=false"></script>
+
+  
+<script>
+  let config = {
+    apiKey: "AIzaSyDeLCm78MvdBwYfxRwtI4UwfRrEfg6-UqA",
+    authDomain: "sociologia-dbo-2018.firebaseapp.com",
+    databaseURL: "https://sociologia-dbo-2018.firebaseio.com",
+    projectId: "sociologia-dbo-2018",
+    storageBucket: "sociologia-dbo-2018.appspot.com",
+    messagingSenderId: "774468639707"
+  };
+  firebase.initializeApp(config);
+  let database = firebase.database();
+  database.ref('/markers').once('value').then(function(markers) {
+    let osbagulho = markers.val();
+    console.log(osbagulho); //json
+    
+    let values = [];
+    for (i=0; i < Object.keys(osbagulho).length; i++){
+      value = osbagulho[Object.keys(osbagulho)[i]];
+      values[i] = value
+      namevalue = Object.keys(osbagulho);
+    }
+    // console.log(namevalue);
+    console.log(values);
+    console.log(values[1]);
+    
+    for (var i = 0; i <= values.length; i++) {
+      var latLng = new google.maps.LatLng(values[i]);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
+    }
+    
+  //   let data = [{
+  //     values: values, //valores vindos no json
+  //     labels: namevalue,  //nome de cada violencia
+  //     type: 'pie'
+  //   }];
+  //   let layout = {
+  //     height: 400,
+  //     width: 500
+  //   };
+  //   Plotly.newPlot('chart', data, layout);
+  });
+  </script>   
+                
+</body>
+</html>
