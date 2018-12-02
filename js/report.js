@@ -2,8 +2,6 @@ import {functions} from '../modules/formReportControl.js';
 
 const buttonEnviar = document.querySelector('button#enviarFormulario');
 const buttonVoltar = document.querySelector('button#voltarFormulario');
-// const divSelecao = document.querySelector('.selecao');
-// const divOpcionais = document.querySelectorAll('.opcoes');
 const opitionalSim = document.querySelector('button#opitional_button_yes');
 const opitionalNo = document.querySelector('button#opitional_button_no');
 
@@ -34,7 +32,3 @@ buttonVoltar.addEventListener('click', function(e) {
     e.preventDefault();
     functions.returnForm();
 });
-
-
-// divSelecao.addEventListener('click', functions.secondForm);
-

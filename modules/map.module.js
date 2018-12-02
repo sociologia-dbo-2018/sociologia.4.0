@@ -1,3 +1,4 @@
+import {db} from './fb.js';
 export const loadMap = () => {
     const divMap = document.querySelector('#mapIndex');
     const googleMaps = require('google-maps');
@@ -12,7 +13,6 @@ export const loadMap = () => {
             maxZoom: 17,
             minZoom: 3
         });
-        const markers = [];
         navigator.geolocation.getCurrentPosition(function(position) {
             map.setCenter(new google.maps.LatLng(position.coords.latitude,
                 position.coords.longitude));
@@ -34,9 +34,12 @@ export const loadMap = () => {
                 const latLong = {
                     lat: e.latLng.lat(), lng: e.latLng.lng()
                 };
-                markers.push(latLong);
-                console.log(markers);
-            } else { }
+                writeCoords(latLong);
+            }
         });
     });
+};
+
+function writeCoords(latLong) {
+    db.ref('markers/').push({latLong});
 }

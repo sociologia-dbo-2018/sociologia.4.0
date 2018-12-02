@@ -66210,11 +66210,13 @@ var _fb = require("./fb.js");
 
 var firebaseControl = {
   sendForm: function sendForm(object) {
-    var database = _fb.db.ref("dados/".concat(object.primary));
+    var database = _fb.db.ref().child("dados/".concat(object.first, "/").concat(object.second));
 
-    var objectSecondary = object.secondary;
-    console.log(database.val().objectSecondary); // const value = database.val() ++; 
+    console.log(database); // const value = database.val() ++;
     // database.set(value);
+
+    something = null;
+    database.push(something);
   },
   sendMap: function sendMap(object) {}
 };
@@ -66396,9 +66398,7 @@ exports.functions = functions;
 var _formReportControl = require("../modules/formReportControl.js");
 
 var buttonEnviar = document.querySelector('button#enviarFormulario');
-var buttonVoltar = document.querySelector('button#voltarFormulario'); // const divSelecao = document.querySelector('.selecao');
-// const divOpcionais = document.querySelectorAll('.opcoes');
-
+var buttonVoltar = document.querySelector('button#voltarFormulario');
 var opitionalSim = document.querySelector('button#opitional_button_yes');
 var opitionalNo = document.querySelector('button#opitional_button_no');
 buttonEnviar.addEventListener('click', function (e) {
@@ -66428,7 +66428,7 @@ buttonVoltar.addEventListener('click', function (e) {
   e.preventDefault();
 
   _formReportControl.functions.returnForm();
-}); // divSelecao.addEventListener('click', functions.secondForm);
+});
 },{"../modules/formReportControl.js":"../modules/formReportControl.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
